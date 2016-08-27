@@ -1,7 +1,19 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset='utf-8')
+    //if IE
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // Place favicon.ico and apple-touch-icon.png in the root directory
+    link(rel='stylesheet', href='css/bootstrap.min.css')
+    link#color-switcher-link(rel='stylesheet', href='css/main.css')
+    link(rel='stylesheet', href='css/animations.css')
+    link(rel='stylesheet', href='css/fonts.css')
+    link(rel='stylesheet', href='layerslider/css/layerslider.css')
+    script(src='js/vendor/modernizr-2.6.2.min.js')
+    block title
+        title= title
   body
     block content
