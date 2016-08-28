@@ -8,9 +8,9 @@ router.get('/', function (req, res, next) {
     });
 });
 
-router.get('/patient_register', function (req, res, next) {
-    res.render('patient_register', {
-        title: 'Patient Signup'
+router.get('/register', function (req, res, next) {
+    res.render('register', {
+        title: 'Signup'
     });
 });
 
