@@ -3,13 +3,17 @@ var middleware = require('../middleware');
 var router = express.Router();
 
 module.exports = function (redisClient) {
-    router.get('/', middleware.houseshares.setPropertyFromRequest('uid'),
+
+    router.get('/',
+        middleware.loggedIn,
+        middleware.houseshares.setPropertyFromRequest('uid'),
         middleware.houseshares.users.userExists(redisClient),
         middleware.houseshares.users.getUserHouseshareInfo(redisClient),
         function (req, res) {
+            console.dir(req.user);
             res.render('doctors_profile', {
                 title: 'DocTime-User Profile',
-                uid: req.params.uid,
+                uid: req.uid,
                 user: req.user
             });
         });

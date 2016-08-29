@@ -18,9 +18,13 @@ block content
                 .form-group
                   input.form-control(placeholder='And Here’s my password:', name='password', type='password', required='')
                 .form-group
-                  label
-                    input(type="checkbox", name="patient")
-                    | Patient
+                  .row
+                    .col-md-3.col-md-offset-1
+                      input(type="checkbox", name="patient")
+                      |              Patient?
+                    .col-md-3.col-md-offset-1                           
+                      input(type="checkbox", name="doctor")
+                      |              Doctor?
                 button.btn.btn-lg.btn-success.btn-block(href='submit') Sign Up
             
             if userExist && !userActivated

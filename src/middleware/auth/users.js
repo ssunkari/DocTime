@@ -12,7 +12,6 @@ module.exports = function (redisClient) {
                 }
             });
         },
-
         findByUsername: function (username, password) {
             console.log('username', username);
             console.log('password', password);

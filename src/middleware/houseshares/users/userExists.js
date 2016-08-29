@@ -4,6 +4,7 @@ module.exports = function (redisClient) {
         var userKey = req.uid;
         redisClient.hgetallAsync(userKey).then(function (userObj) {
             if (userObj) {
+                req.userExist = true;
                 console.log('User Exists Module :: User Exists');
                 next();
             } else {

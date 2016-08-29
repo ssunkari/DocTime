@@ -4,24 +4,30 @@ var router = express.Router();
 
 module.exports = function (redisClient, emailClient) {
 
-    router.post('/passwordRecovery', middleware.signup.validateUserByEmail(redisClient), function (req, res, next) {
-        if (req.userExist) {
-            req.passwordRecovery = true;
-            req.message = 'Email sent please click the link to reset password';
+    router.post('/passwordRecovery', function (req, res, next) {
+            req.uid = req.body.username;
             next();
-        } else {
-            res.render('passwordRecovery', {
-                title: 'Divider-Password Recovery',
-                message: 'User does not exist'
-            });
-        }
+        },
+        middleware.signup.validateUserByEmail(redisClient),
+        function (req, res, next) {
+            if (req.userExist) {
+                req.passwordRecovery = true;
+                req.message = 'Email sent please click the link to reset password';
+                next();
+            } else {
+                res.render('passwordRecovery', {
+                    title: 'Divider-Password Recovery',
+                    message: 'User does not exist'
+                });
+            }
 
-    }, middleware.signup.sendEmail(emailClient), function (req, res) {
-        res.render('passwordRecovery', {
-            title: 'Divider-Password Recovery',
-            message: req.message
+        }, middleware.signup.sendEmail(emailClient),
+        function (req, res) {
+            res.render('passwordRecovery', {
+                title: 'DocTime-Password Recovery',
+                message: req.message
+            });
         });
-    });
 
     router.get('/passwordRecovery', function (req, res) {
         res.render('passwordRecovery', {
@@ -36,7 +42,8 @@ module.exports = function (redisClient, emailClient) {
         });
     });
 
-    router.post('/passwordReset/:id',
+    router.post('/passwordReset/:uid',
+        middleware.houseshares.setPropertyFromRequest('uid'),
         middleware.houseshares.users.userExists(redisClient),
         middleware.signup.changePassword(redisClient),
         function (req, res) {

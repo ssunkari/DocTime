@@ -13,14 +13,14 @@ function normalizedCtx(ctx) {
 }
 /* GET home page. */
 router.get('/', function (req, res) {
-    res.render('index_1', {
+    res.render('index', {
         title: 'DocTime-Login Page',
         errors: []
     });
 });
 
 router.get('/login', function (req, res) {
-    res.render('index', {
+    res.render('login', {
         title: 'DocTime-Login Page',
         errors: []
     });
@@ -28,8 +28,10 @@ router.get('/login', function (req, res) {
 
 router.get('/logout',
     function (req, res) {
-        req.logout();
-        res.redirect('/');
+        req.session.destroy(function (err) {
+            req.logout();
+            res.redirect('/'); //Inside a callback… bulletproof!
+        });
     });
 
 router.post('/', function (req, res, next) {

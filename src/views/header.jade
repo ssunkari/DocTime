@@ -1,4 +1,4 @@
-extends layout_1
+extends layout
 
 block content
     #canvas
@@ -180,14 +180,18 @@ block content
                             //-           a(href='comingsoon3.html') Coming Soon 3
                             //-     // eof comingsoon
                             //- // eof pages
-                            // shop
-                            li
-                              a(href='login') Login/Register
-                            // eof shop
                             li
                               a(href='#about') About Us
                             li
-                              a(href='#contact') Contact  
+                              a(href='#contact') Contact
+                            // shop
+                            if uid
+                                li
+                                  a(href='logout') Signout
+                            else
+                                li
+                                  a(href='login') Login/Register
+                                // eof shop
                             //- li
                             //-   a(href='contact.html') Contact
                             //-   |                             

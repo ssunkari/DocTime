@@ -16,13 +16,13 @@ block main
                         i.rt-icon2-home
                   li
                     a(href='#') Pages
-                  li.active Doctor Name
+                  li.active #{user.friendlyName}
         section#content.ls.section_padding_top_100.section_padding_bottom_75
           .container
             .row
               .col-md-5
                 img(src='images/team/07.jpg', alt='')
-                h1 Dr. Rachel Abbot
+                h1 Dr. #{user.friendlyName}
                 p.highlight Dentist
                 p.social-icons
                   a.soc-facebook(href='#', title='', data-toggle='tooltip', data-original-title='Facebook') #
@@ -45,6 +45,7 @@ block main
                       .media-body
                         h4.media-heading Phone:
                         |                                 +12 345 678 9123
+
                   li
                     .media
                       .media-left
@@ -69,6 +70,8 @@ block main
                       .media-body
                         h4.media-heading Website:
                         |                                 mywebsite.com
+                   button.btn.btn-info.btn-circle(type='button')
+                       i.fa.fa-edit
               .col-md-6.col-md-offset-1
                 h2.entry-title Meet Our Doctor!
                 p.topmargin_20
