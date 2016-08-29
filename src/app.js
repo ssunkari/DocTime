@@ -11,7 +11,7 @@ var shaGen = require('./middleware/shaGen');
 var config = require('./config');
 
 require('./extensions');
-require('./cronJob');
+// require('./cronJob');
 
 var routes = require('./routes/index');
 var app = express();
@@ -74,12 +74,12 @@ app.use('/', routes);
 
 var sgEmailClient = require('./sendGridEmailApi');
 
-smsClient = require('twilio')(config.get('twilio:accountSid'), config.get('twilio:authToken'));
+// smsClient = require('twilio')(config.get('twilio:accountSid'), config.get('twilio:authToken'));
 app.use('/signup', require('./routes/signup')(redisClient, sgEmailClient));
 app.use('/', require('./routes/passwordRecovery')(redisClient, sgEmailClient));
 app.use('/houseshares', require('./routes/houseshares')(redisClient, sgEmailClient));
 app.use('/profile', require('./routes/profile')(redisClient, sgEmailClient));
-app.use('/bills', require('./routes/bills')(redisClient, sgEmailClient, smsClient));
+// app.use('/bills', require('./routes/bills')(redisClient, sgEmailClient, smsClient));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
