@@ -14,14 +14,14 @@ function normalizedCtx(ctx) {
 /* GET home page. */
 router.get('/', function (req, res) {
     res.render('index_1', {
-        title: 'Divider-Login Page',
+        title: 'DocTime-Login Page',
         errors: []
     });
 });
 
 router.get('/login', function (req, res) {
     res.render('index', {
-        title: 'Divider-Login Page',
+        title: 'DocTime-Login Page',
         errors: []
     });
 });
@@ -57,11 +57,7 @@ router.post('/', function (req, res, next) {
                 if (err) {
                     return next(err);
                 }
-                if (!user.houseshareSetup) {
-                    res.redirect('/houseshares/new?uid=' + req.user.id)
-                } else {
-                    return res.redirect('/profile/' + req.user.id);
-                }
+                return res.redirect('/profile?uid=' + req.user.id);
             });
         })(req, res, next);
 

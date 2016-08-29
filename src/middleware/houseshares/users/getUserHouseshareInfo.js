@@ -8,9 +8,16 @@ module.exports = function (redisClient) {
         redisClient.hgetallAsync(req.uid)
             .then(function (user) {
                 req.user = user;
-                var houseSharePromise = redisClient.hgetallAsync(user.houseshareKey);
-                var tenantsLivingInHouseshare = usersCurrentlyLivingInHouseshare(redisClient, user.houseshareKey);
-                var smsNotifSettings = redisClient.hgetallAsync('SMS:NOTIF:' + req.uid + ':' + user.houseshareKey);
+                req.user.houseshare = {};
+                req.user.houseshare.currentUsers = {};
+                req.user.smsNotifSettings = {};
+                req.user.emailNotifSettings = {};
+                req.user.houseshareUtilTypes = {}
+                return user;
+                req.user = user;
+                //var houseSharePromise = redisClient.hgetallAsync(user.houseshareKey);
+                // var tenantsLivingInHouseshare = usersCurrentlyLivingInHouseshare(redisClient, user.houseshareKey);
+                //  var smsNotifSettings = redisClient.hgetallAsync('SMS:NOTIF:' + req.uid + ':' + user.houseshareKey);
                 var emailNotifSettings = redisClient.hgetallAsync('EMAIL:NOTIF:' + req.uid + ':' + user.houseshareKey);
                 var houseshareUtilTypes = redisClient.smembersAsync('UTILTYPES:' + user.houseshareKey);
 
