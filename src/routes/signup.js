@@ -28,7 +28,7 @@ module.exports = function (redisClient, emailClient) {
         middleware.houseshares.users.userExists(redisClient),
         middleware.signup.activate(redisClient),
         function (req, res, next) {
-            res.redirect('/houseshares/new?uid=' +
+            res.redirect('/profile?uid=' +
                 req.uid);
         }
     );
