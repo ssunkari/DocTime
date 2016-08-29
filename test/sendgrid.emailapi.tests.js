@@ -1,4 +1,4 @@
-describe.only('send email using send grid', function () {
+describe.skip('send email using send grid', function () {
     it('should send email message', function (done) {
         var sendgrid = require('sendgrid')(process.env.SGAPIKEY);
         sendgrid.send({

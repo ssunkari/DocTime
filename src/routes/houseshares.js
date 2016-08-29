@@ -3,7 +3,7 @@ var middleware = require('../middleware');
 var router = express.Router();
 
 module.exports = function (redisClient, emailClient) {
-    router.get('/new/', function (req, res) {
+    router.get('/new', function (req, res) {
         res.render('housesharesNew', {
             title: 'Divider-HouseShares',
             uid: req.query.uid
@@ -29,6 +29,11 @@ module.exports = function (redisClient, emailClient) {
         middleware.houseshares.users.userExists(redisClient),
         middleware.houseshares.users.getUserHouseshareInfo(redisClient),
         middleware.houseshares.users.render());
+
+    router.get('/bills', middleware.houseshares.setPropertyFromRequest('uid'),
+        middleware.houseshares.users.userExists(redisClient),
+        middleware.houseshares.users.getUserHouseshareInfo(redisClient),
+        middleware.houseshares.bills.render)
 
     router.post('/new', middleware.houseshares.setPropertyFromRequest('uid'),
         middleware.houseshares.users.userExists(redisClient),

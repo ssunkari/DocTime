@@ -26,14 +26,12 @@ module.exports = function (redisClient) {
         });
 
     router.post('/user/:uid',
-
         middleware.houseshares.setPropertyFromRequest('uid'),
         middleware.houseshares.users.userExists(redisClient),
-        middleware.houseshares.users.uploadFileToDisk(),
+        middleware.houseshares.users.uploadFileToDisk,
         middleware.houseshares.users.setImagePathToUserProfile(redisClient),
         middleware.houseshares.users.addorModifyUserSetting(redisClient),
         middleware.houseshares.users.getUserHouseshareInfo(redisClient),
-
         //   require('connect-ensure-login').ensureLoggedIn('/'),
         function (req, res) {
             console.log('Get User -===========', req.uid);

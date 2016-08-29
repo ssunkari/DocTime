@@ -13,6 +13,13 @@ function normalizedCtx(ctx) {
 }
 /* GET home page. */
 router.get('/', function (req, res) {
+    res.render('index_1', {
+        title: 'Divider-Login Page',
+        errors: []
+    });
+});
+
+router.get('/login', function (req, res) {
     res.render('index', {
         title: 'Divider-Login Page',
         errors: []
@@ -33,14 +40,14 @@ router.post('/', function (req, res, next) {
             }
             if (!user) {
                 return res.render('index', {
-                    title: 'Divider - Login Page',
+                    title: 'DOC TIME - Login Page',
                     errMsg: 'We are unable to log you in at this time. Please try again or email admin for assistance.'
                 });
             }
             console.dir(user);
             if (!user.activated || user.activated == false) {
                 return res.render('index', {
-                    title: 'Divider - Login Page',
+                    title: 'DOC TIME - Login Page',
                     notActivated: true,
                     username: req.body.username,
                 });

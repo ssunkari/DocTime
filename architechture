@@ -13,7 +13,8 @@ user =
 	activated: true,
 	houseshareSetup:true,
 	imageFileName:'url',
-	houseshareKey:'HS:Key'
+	houseshareKey:'HS:Key',
+	phone:
 	fixedRent: true,
 	fixedBills:true
 	roomId:roomId

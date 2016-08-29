@@ -17,6 +17,10 @@ block content
                   input.form-control(placeholder='Here’s my email address:', name='username', type='email', autofocus='',required='')
                 .form-group
                   input.form-control(placeholder='And Here’s my password:', name='password', type='password', required='')
+                .form-group
+                  label
+                    input(type="checkbox", name="patient")
+                    | Patient
                 button.btn.btn-lg.btn-success.btn-block(href='submit') Sign Up
             
             if userExist && !userActivated

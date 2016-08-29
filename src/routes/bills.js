@@ -26,8 +26,8 @@ module.exports = function (redisClient, emailClient, smsClient) {
         middleware.houseshares.users.getUserHouseshareInfo(redisClient),
         middleware.houseshares.users.setHousematesNotificationSettings(redisClient),
         middleware.houseshares.bills.addBill(redisClient),
-        middleware.houseshares.bills.buildNotifyMessage(),
-        middleware.houseshares.notifications.notifyHousemates(emailClient, smsClient),
+        middleware.houseshares.bills.buildNotifyMessage,
+        //    middleware.houseshares.notifications.notifyHousemates(emailClient, smsClient),
         //   require('connect-ensure-login').ensureLoggedIn('/'),
         function (req, res) {
             console.dir(req.user);

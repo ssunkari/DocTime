@@ -34,21 +34,19 @@ block content
                           .col-lg-6
                             label Your Name: #{user.friendlyName}
                           .col-lg-6
-                            i.fa.fa-edit
+                            a.fa.fa-edit.friendlyName
                   .row
                     .col-lg-12
                         .row
                           .col-lg-10
                             label Email: #{user.username}
-                          .col-lg-2
-                            i.fa.fa-edit
                   .row
                     .col-lg-12
                         .row
                           .col-lg-8
                             label Phone No: #{user.phone}
                           .col-lg-4
-                            a.fa.fa-edit
+                            a.fa.fa-edit.phone
                   .row
                     .col-lg-12
                         .row
@@ -211,10 +209,16 @@ block content
           //-           button.btn.btn-primary(type='submit') Save changes
           script.
             $(document).ready(function() {
-                $("a").click(function(event) {
+                $("a.fa.fa-edit.phone").click(function(event) {
                 var grandParent = $(this).parent().parent();
                 $(this).parent().parent().children().remove();
                 $(grandParent).append('<div class="col-lg-6"><label>Phone No </label></div>'+
                 '<div class="col-lg-6"><input type="text" name="phone"/></div>');
+                });
+                $("a.fa.fa-edit.friendlyName").click(function(event) {
+                var grandParent = $(this).parent().parent();
+                $(this).parent().parent().children().remove();
+                $(grandParent).append('<div class="col-lg-6"><label>Your Name:</label></div>'+
+                '<div class="col-lg-6"><input type="text" name="friendlyName"/></div>');
                 });
             });
